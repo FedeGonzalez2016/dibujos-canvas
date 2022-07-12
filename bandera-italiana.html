@@ -15,8 +15,15 @@
     pincel.fillRect(400,0,200,400); // Funcion
 
     pincel.fillStyle = "yellow";
-    pincel.beginPath();
+    pincel.beginPath(); // Le decimos al lienzo que espere instrucciones, que nosotros le iremos diciendo a donde tiene que ir, por eso la instruccion es "Begin Path" o "Empezar camino".
     pincel.moveTo(300,200); // Mover el pincel a la posicion indicada
-    pincel.lineTo()
-    
+    pincel.lineTo(200,400); // Dibujar una linea del punto 300,200 al 200,400
+    pincel.lineTo(400,400); // Dibujar una linea del punto 300,200 al 200,400
+    pincel.fill();
+
+    pincel.fillStyle = "blue";
+    pincel.beginPath(); // Le decimos al lienzo que espere instrucciones, que nosotros le iremos diciendo a donde tiene que ir, por eso la instruccion es "Begin Path" o "Empezar camino".
+    pincel.arc(300,200,50,0,2*3.14)
+    pincel.fill();
+
 </script>
