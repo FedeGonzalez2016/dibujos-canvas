@@ -1,0 +1,80 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");    
+    pincel.fillStyle = "lightgrey"; // LE PONEMOS COLOR GRIS CLARO AL LIENZO
+    pincel.fillRect(0,0,600,400); // LE DAMOS EL TAMAÑO AL LIENZO
+
+    var radio = 10;
+    var xRandom;
+    var yRandom;
+
+    function disenarCircunferencia (x,y,radio,color){ //CODIGO PARA CREAR 1 CIRCULO
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc (x,y,radio,0,2*Math.PI); // PARAMETROS QUE LE TENEMOS QUE PASAR AL CIRCULO: EJE X, EJE Y, RADIO DE "GROSOR" DEL CIRCULO, ANGULO Y 2* 3.14
+        pincel.fill();
+
+    }
+
+    //------------------------------------------------------
+
+    function limpiarPantalla(){ // FUNCION PARA LIMPIAR PANTALLA
+
+        pincel.clearRect(0,0,600,400); 
+
+    }
+
+    //-------------------------------------------------------
+
+    function disenarObjetivo(x,y){ // CREAMOS OBJETIVO CON 3 CIRCULOS, 2 ROJOS Y 1 BLANCO Y LOS SUPERPONEMOS
+
+    disenarCircunferencia (x,y,radio + 20,"red")
+    disenarCircunferencia (x,y,radio + 10,"white")
+    disenarCircunferencia (x,y,radio,"red")
+
+    }
+
+    //-------------------------------------------------------
+
+    function sortearPosicion (maximo){ // CREAMOS UNA FUNCION QUE IRA MOVIENDO DE FORMA RANDOM EL OBJETIVO POR LA PANTALLA. CON MATH.FLOOR REDONDEAREMOS PARA ABAJO EL VALOR QUE NOS PASE MATH.RANDOM, Y LO MULTIPLICAMOS POR LOS VALORES MAXIMOS DEL LIENZO, QUE SON X 600 E Y 400 RESPECTIVAMENTE.
+
+        return Math.floor(Math.random()*maximo);
+
+    }
+
+    //-------------------------------------------------------
+
+    function actualizarPantalla(){
+
+        limpiarPantalla(); // LIMPIAMOS PANTALLA
+        xRandom = sortearPosicion(600); // GENERAMOS POSICION ALEATORIA EN EJE X
+        yRandom = sortearPosicion(400); // GENERAMOS POSICION ALEATORIA EN EJE Y
+        disenarObjetivo(xRandom,yRandom); // CADA VEZ QUE ACTUALIZAMOS LE PASAMOS NUEVOS VALORES X E Y AL BLANCO
+        
+    }
+
+    setInterval(actualizarPantalla,1000);
+
+    function disparar(evento){
+
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+
+        if ((x < xRandom + radio) &&
+            (x > xRandom - radio) &&
+            (y < yRandom + radio) &&
+            (y > yRandom - radio) ){
+
+                alert("Has acertado");
+
+            }
+
+        
+    }
+
+    pantalla.onclick = disparar
+
+</script>
