@@ -5,13 +5,18 @@
     var pantalla = document.querySelector("canvas");
     var pincel = pantalla.getContext("2d");
 
-    pincel.fillStyle = "white" // Propiedad
+    pincel.fillStyle = "white"; // Propiedad
     pincel.fillRect(0,0,600,400); // Funcion
 
-    pincel.fillStyle = "green" // Propiedad
+    pincel.fillStyle = "green"; // Propiedad
     pincel.fillRect(0,0,200,400); // Funcion
 
-    pincel.fillStyle = "red" // Propiedad
+    pincel.fillStyle = "red"; // Propiedad
     pincel.fillRect(400,0,200,400); // Funcion
+
+    pincel.fillStyle = "yellow";
+    pincel.beginPath();
+    pincel.moveTo(300,200); // Mover el pincel a la posicion indicada
+    pincel.lineTo()
     
 </script>
